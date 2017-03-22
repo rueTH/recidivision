@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="recidiVision">
+<head>
+  <meta charset="UTF-8">
+  <title>recidiVision</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <!-- Bootstrap css link -->
+  <link rel="stylesheet" type="text/css" href="/lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- My css link -->
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body class="container-fluid generalTheme">
+<div ng-include="'partials/navBar.html'"></div>
+  <!-- <div ng-include="'partials/footer.html'"></div> -->
+     <!-- <div ng-include="'partials/visitor-home.html'"></div> -->
+        <div ng-view></div>
+ 
+  
+  
+  
+<!-- Jquery script tag -->
+<script type="text/javascript" src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap script tag -->
+<script type="text/javascript" src="/lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Angular script tags -->
+<script type="text/javascript" src="/lib/node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/node_modules/angular-route/angular-route.min.js"></script>
+<!-- firebase script needs to be on top of app.js -->
+<script type="text/javascript" src="/lib/node_modules/firebase/firebase.js"></script>
+<!-- app.js always needs to be on top of all script tags -->
+<script type="text/javascript" src="app/app.js"></script>
+<!-- this holds your api key etc -->
+<script type="text/javascript" src="app/values/fb-creds.js"></script>
+
+<!-- Factory JS -->
+<script type="text/javascript" src="app/factories/AuthFactory.js"></script>
+<script type="text/javascript" src="app/factories/FilterFactory.js"></script>
+<!-- <script type="text/javascript" src="app/factories/SVGmapsFactory.js"></script> -->
+<!-- Controllers JS -->
+<script type="text/javascript" src="app/controllers/UserCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/NavbarCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/NewSearchCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/UserProfileCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/VisitorCtrl.js"></script>
+<!-- <script type="text/javascript" src="app/controllers/SVGmapsCtrl.js"></script>  -->
+
+</body>
+</html>
