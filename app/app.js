@@ -38,7 +38,8 @@ app.config( function ($routeProvider) {
   }).
   when("/new-search", {
     templateUrl: "partials/newSearch.html",
-    controller: "NewSearchCtrl"
+    controller: "NewSearchCtrl", 
+    resolve: {isAuth}
   }).
   when("/user-profile", {
     templateUrl: "partials/userProfile.html",

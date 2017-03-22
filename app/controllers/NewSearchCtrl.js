@@ -1,6 +1,6 @@
 "use strict";
 console.log("You are in the 'New Search' Controller!");
-app.controller("NewSearchCtrl", function($scope, $window, $location) {
+app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchFactory, AuthFactory) {
 
   // this.selectedDropdownItem = null;
   // this.dropdownItems = ['dropdown 1', 'dropdown 2', 'dropdown 3'];
@@ -22,16 +22,20 @@ app.controller("NewSearchCtrl", function($scope, $window, $location) {
   $('.dropdown-menu a').click(function(){
     $('#parameter').text($(this).text());
   });
+
+
 //bind pair and add to array
    $scope.add = function() {
     let parameter = $scope.parameter; 
     let newTerm = $scope.newTerm;
     console.log(newTerm);
     let searchPair = {};
-    searchPair[parameter] = newTerm;
+    searchPair.parameter = parameter;
+    searchPair.newTerm = newTerm;
     console.log("function is firing");
     searchPairs.push(searchPair);
     console.log(searchPair);
+    console.log(searchPairs);
   };
 //delete individual search terms:  
   $scope.del = function(i){
@@ -45,6 +49,12 @@ app.controller("NewSearchCtrl", function($scope, $window, $location) {
 //saving your searches:
   $scope.save = function() {
     alert ($scope.searchPairs);
+    let user = AuthFactory.getUser();
+    let searchObject = {
+      search: searchPairs,
+      uid: user
+    };
+    SaveSearchFactory.saveSearch(searchObject);
   };
     // $scope.save = function($index) {
     //   console.log($scope.terms);

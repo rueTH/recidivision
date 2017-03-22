@@ -29,17 +29,17 @@
         <span id="selectParameter">Select parameter</span><span class="caret"></span>
       </input>
       <ul class="dropdown-menu dropdown-menu-left">
-        <li><a tabindex="-1">year</a></li>
-        <li><a tabindex="-1">ethnicity</a></li>
-        <li><a tabindex="-1">location</a></li>
-        <li><a tabindex="-1">prison</a></li>   
-        <li><a tabindex="-1">judge</a></li>
-        <li><a tabindex="-1">family</a></li>
-        <li><a tabindex="-1">name</a></li>
-        <li><a tabindex="-1">age</a></li>
-        <li><a tabindex="-1">time served</a></li>
-        <li><a tabindex="-1">number of incarcerations</a></li>
-        <li><a tabindex="-1">highest level of education completed</a></li>
+        <li><a class="selectedParameter" tabindex="-1">year</a></li>
+        <li><a class="selectedParameter" tabindex="-1">ethnicity</a></li>
+        <li><a class="selectedParameter" tabindex="-1">location</a></li>
+        <li><a class="selectedParameter" tabindex="-1">prison</a></li>   
+        <li><a class="selectedParameter" tabindex="-1">judge</a></li>
+        <li><a class="selectedParameter" tabindex="-1">family</a></li>
+        <li><a class="selectedParameter" tabindex="-1">name</a></li>
+        <li><a class="selectedParameter" tabindex="-1">age</a></li>
+        <li><a class="selectedParameter" tabindex="-1">time served</a></li>
+        <li><a class="selectedParameter" tabindex="-1">number of incarcerations</a></li>
+        <li><a class="selectedParameter" tabindex="-1">highest level of education completed</a></li>
                        
       </ul>
     </div> 
@@ -51,8 +51,8 @@
   <b>Search Terms Added Below</b>
   
   <div ng-repeat='searchPair in searchPairs'>
-    <input ng-model='searchPair' id='searchPair-{{$searchPairs}}' class='searchPair-{{$searchPairs}}'/>
-
+    <input ng-model='searchPair.parameter' id='searchPair[parameter]-{{$searchPairs}}' class='searchPair-{{$searchPairs}}'/>
+    <input ng-model='searchPair.newTerm' id='searchPair[newTerm]-{{$searchPairs}}' class='searchPair-{{$searchPairs}}'/>
     <button ng-click='del($index)'>delete</button>
   </div>
 
