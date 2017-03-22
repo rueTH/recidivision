@@ -15,7 +15,7 @@ app.controller("NewSearchCtrl", function($scope, $window, $location) {
   $scope.searchPair = {};
   // $scope.searchPair = 
   $scope.parameter = '';
-  $scope.newterm = '';  
+  $scope.newTerm = '';  
   
   $scope.saveButtonLabel = 'Save this search';
   
@@ -26,11 +26,12 @@ app.controller("NewSearchCtrl", function($scope, $window, $location) {
    $scope.add = function() {
     let parameter = $scope.parameter; 
     let newTerm = $scope.newTerm;
+    console.log(newTerm);
     let searchPair = {};
     searchPair[parameter] = newTerm;
     console.log("function is firing");
     searchPairs.push(searchPair);
-    console.log(searchPairs);
+    console.log(searchPair);
   };
 //delete individual search terms:  
   $scope.del = function(i){
