@@ -2,5 +2,15 @@
 
 <h2>Your Saved Searches:</h2>
 
-<ul class="list-group">
-<li class="list-group-searchPair"><strong>{{selectedObject.searchObjectId}}: </strong> {{selectedObject}}</li>
+<div ng-repeat="searchPair in searchPairs | filter: searchText.search">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-xs-1"><input type="checkbox" name=""/></div>
+      <div class="col-xs-7"><a ng-href="#!/savedObjects/{{searchPair.id}}">
+      {{searchPair.object}}</a></div>
+      <div class="col-xs-2">One day, I will inject some object properties here.</div>
+      <div class="col-xs-1">...Here too!</div>
+      <div class="col-xs-1"><button class="btn btn-danger" ng-click="del(searchPair.id)">X</button></div>
+    </div>
+  </div>
+</div>

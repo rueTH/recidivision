@@ -17,7 +17,7 @@ let postSavedSearchObject = (searchObject) => {
 let getSavedObjects = (user) => {
   let savedObjects = [];
   return $q((resolve, reject) => {
-    console.log("inside function 'getSavedObjects' in 'SaveSearchFactory'.", `${FBCreds.databaseURL}/savedSearches.json?orderBy="uid"&equalTo"${user}"`)
+    console.log("inside function 'getSavedObjects' in 'SaveSearchFactory'.", `${FBCreds.databaseURL}/savedSearches.json?orderBy="uid"&equalTo"${user}"`);
     $http.get(`${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`)
     .then((returnedObject) => {
       let searchObjectCollection = returnedObject.data;

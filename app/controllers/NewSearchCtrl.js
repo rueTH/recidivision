@@ -36,6 +36,7 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
     searchPairs.push(searchPair);
     console.log(searchPair);
     console.log(searchPairs);
+    
   };
 //delete individual search terms:  
   $scope.del = function(i){
@@ -48,13 +49,12 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
 
 //saving your searches:
   $scope.save = function() {
-    alert ($scope.searchPairs);
     let user = AuthFactory.getUser();
     let searchObject = {
       search: searchPairs,
       uid: user
     };
-    SaveSearchFactory.postSavedSearchObject(searchObject);
+    SaveSearchFactory.postSavedSearchObject($scope.searchObject);
   };
     // $scope.save = function($index) {
     //   console.log($scope.terms);

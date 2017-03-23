@@ -51,8 +51,8 @@ app.controller("UserCtrl", function($scope, $window, AuthFactory, $location) {
       .then( function (result) {
         var user = result.user.uid;
         console.log("logged in google user:", user);
-        // Once logged in, show user profile page
-        $location.path("/user-profile");
+        // Once logged in, show welcome-back.html
+        $location.path("/welcome-back");
         $scope.$apply(); // WHAT IS THIS CONNECTED TO?
       }).catch( function (error) {
         console.log("error with google login", error);
