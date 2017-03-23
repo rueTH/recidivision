@@ -1,6 +1,6 @@
 "use strict";
 console.log("You are in the 'New Search' Controller!");
-app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchFactory, AuthFactory) {
+app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchFactory, AuthFactory, $routeParams) {
 
   // this.selectedDropdownItem = null;
   // this.dropdownItems = ['dropdown 1', 'dropdown 2', 'dropdown 3'];
@@ -54,13 +54,32 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
       search: searchPairs,
       uid: user
     };
-    SaveSearchFactory.saveSearch(searchObject);
+    SaveSearchFactory.postSavedSearchObject(searchObject);
   };
     // $scope.save = function($index) {
     //   console.log($scope.terms);
     // };
 
+  $scope.viewObjectCollection = function() {
+    console.log($routeParams.searchObjectId);
+    let user = AuthFactory.getUser();
+
+    SaveSearchFactory.getSavedObjects(user)
+    .then(function(searchObjectCollection) {
+      $scope.savedObjects = searchObjectCollection;
+      $scope.selectedObject = $scope.savedObjects.filter(function(searchPair){
+        return searchPair.id === $routeParams.searchObjectId;
+      })[0];
+    });
+  };
+
+
+
+
     $scope.reset();
+  
+
+
   });
 
 
