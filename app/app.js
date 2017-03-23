@@ -45,6 +45,10 @@ app.config( function ($routeProvider) {
     templateUrl: "partials/userProfile.html",
     controller: "UserProfileCtrl"
   }).
+  when("/welcome-back", {
+    templateUrl: "partials/welcomeBack.html",
+    controller: "WelcomeBackCtrl"
+  }).
   // when("/al-county-svg-map", {
     // templateUrl: "partials/svgMaps.html",
     // controller: "SVGmapsCtrl"
