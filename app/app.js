@@ -43,8 +43,8 @@ app.config(function ($routeProvider) {
     controller: 'SavedObjectsCtrl',
     resolve: {isAuth}
   }).
-  when("/new-search", {
-    templateUrl: "partials/searchForm.html",
+  when("/", {
+    templateUrl: "partials/navBar.html",
     controller: 'NavBarCtrl',
     resolve: {isAuth}
   }).
