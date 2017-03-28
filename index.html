@@ -9,11 +9,16 @@
   <!-- My css link -->
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body class="container-fluid generalTheme">
+<body ng-app="recidiVision" class="container-fluid generalTheme">
 <div ng-include="'partials/navBar.html'"></div>
   <!-- <div ng-include="'partials/footer.html'"></div> -->
      <!-- <div ng-include="'partials/visitor-home.html'"></div> -->
-        <div ng-view></div>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 main-container">
+    <div class="col-xs-12" ng-view> </div>
+  </div>
+</div>
+       
  
   
   
@@ -26,6 +31,7 @@
 <!-- Angular script tags -->
 <script type="text/javascript" src="/lib/node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="/lib/node_modules/angular-route/angular-route.min.js"></script>
+
 <!-- firebase script needs to be on top of app.js -->
 <script type="text/javascript" src="/lib/node_modules/firebase/firebase.js"></script>
 <!-- app.js always needs to be on top of all script tags -->
@@ -38,13 +44,18 @@
 <script type="text/javascript" src="app/factories/FilterFactory.js"></script>
 <script type="text/javascript" src="app/factories/SaveSearchFactory.js"></script>
 <!-- <script type="text/javascript" src="app/factories/SVGmapsFactory.js"></script> -->
+<!-- Directives JS -->
+<script type="text/javascript" src="app/directives/SVGmapsDirective.js"></script>
 <!-- Controllers JS -->
 <script type="text/javascript" src="app/controllers/UserCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/NavbarCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/NewSearchCtrl.js"></script>
-<script type="text/javascript" src="app/controllers/UserProfileCtrl.js"></script>
-<script type="text/javascript" src="app/controllers/VisitorCtrl.js"></script>
-<!-- <script type="text/javascript" src="app/controllers/SVGmapsCtrl.js"></script>  -->
+<script type="text/javascript" src="app/controllers/SavedObjectsCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ObjectViewCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/SearchObjectEditCtrl.js"></script>
+<!-- <script type="text/javascript" src="app/controllers/VisitorCtrl.js"></script> -->
+<script type="text/javascript" src="app/controllers/NavBarCtrl.js"></script> 
+<script type="text/javascript" src="app/controllers/SVGmapsCtrl.js"></script> 
 
 </body>
 </html>

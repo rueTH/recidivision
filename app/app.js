@@ -4,55 +4,65 @@ var app = angular.module("recidiVision", ["ngRoute"]);
 
   //used to authenticate user when navigating to other views
   let isAuth = (AuthFactory) => new Promise ( (resolve, reject) => {
-    console.log("running isAuth");
+  // console.log("running isAuth");
     AuthFactory.isAuthenticated()
     .then ( (userExists) => {
       console.log("userExists", userExists);
       if (userExists){
         console.log("Authenticated, go ahead.");
         resolve();
-      } 
-
-      // else {
-      //   console.log("we're sorry; authentication failed");
-      //   reject();
-      // }
-
-    });
+      } else {
+      console.log("we're sorry; authentication failed");
+        reject();
+      }
+  });
 
 });
 
-app.config( function ($routeProvider) {
+app.config(function ($routeProvider) {
   $routeProvider.
   when("/", {
     templateUrl: "partials/login.html",
-    controller: "UserCtrl"
+    controller: 'UserCtrl'
   }).
   when("/login", {
     templateUrl: "partials/login.html",
-    controller: "UserCtrl"
+    controller: 'UserCtrl'
   }).
-  when("/vistor-home", {
-    templateUrl: "partials/visitorLandingPage.html",
-    controller: "VisitorCtrl"
+  when("/logout", {
+    templateUrl: "partials/login.html",
+    controller: 'UserCtrl'
   }).
   when("/new-search", {
-    templateUrl: "partials/newSearch.html",
-    controller: "NewSearchCtrl", 
+    templateUrl: "partials/searchForm.html",
+    controller: 'NewSearchCtrl', 
     resolve: {isAuth}
   }).
-  when("/user-profile", {
+  when('/savedObjects/userProfile', {
     templateUrl: "partials/userProfile.html",
-    controller: "UserProfileCtrl"
+    controller: 'SavedObjectsCtrl',
+    resolve: {isAuth}
   }).
-  when("/welcome-back", {
-    templateUrl: "partials/welcomeBack.html",
-    controller: "WelcomeBackCtrl"
+  when("/new-search", {
+    templateUrl: "partials/searchForm.html",
+    controller: 'NavBarCtrl',
+    resolve: {isAuth}
   }).
-  // when("/al-county-svg-map", {
-    // templateUrl: "partials/svgMaps.html",
-    // controller: "SVGmapsCtrl"
-  // }).
+  when('/savedObjects/:searchObjectId', {
+    templateUrl: "partials/searchObjectDetails",
+    controller: 'ObjectViewCtrl',
+    resolve: {isAuth}
+  }).
+  when('/savedObjects/:searchObjectId/edit', {
+    templateUrl: 'partials/searchForm.html',
+    controller: 'SearchObjectEditCtrl',
+    resolve: {isAuth}
+  }).
+
+  when("new-search", {
+    templateUrl: "partials/svgMaps.html",
+    controller: "SVGmapsCtrl"
+  }).
 
   otherwise("/");  
 });

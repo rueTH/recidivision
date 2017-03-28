@@ -1,10 +1,33 @@
 "use strict";
 
-app.factory("SaveSearchFactory", ($q, $http, FBCreds, searchObject, user, searchObjectId, editedObject, ObjectFromFirebase, s) => {
+app.factory("SearchFactory", ($q, $http, FBCreds) => {
 
-let postSavedSearchObject = (searchObject) => {
+    let getSavedObjects = (user) => {
+      
+      let savedObjects = [];
+
+      return $q( (resolve, reject) => {
+        // plug in url, we want it to evaluate on (user uid)
+        console.log("user list:", `${FBCreds.databaseURL}/savedObjects.json?orderBy="uid"&equalTo"${user}"`);
+        $http.get(`${FBCreds.databaseURL}/savedObjects.json?orderBy="uid"&equalTo="${user}"`)
+        .then( (returnedObject) => {
+          let searchObjectCollection = returnedObject.data;
+          console.log("searchObjectCollection", searchObjectCollection);
+          Object.keys(searchObjectCollection).forEach((key) => {
+            searchObjectCollection[key].id = key;
+            savedObjects.push(searchObjectCollection[key]);
+          });
+          resolve(savedObjects);
+          console.log(savedObjects);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+      });
+};
+let postSearchObject = (searchObject) => {
     return $q((resolve, reject) => {
-      $http.post(`${FBCreds.databaseURL}/savedSearches.json`,
+      $http.post(`${FBCreds.databaseURL}/savedObjects.json`,
         angular.toJson(searchObject))
       .then((ObjectFromFirebase) => {
         resolve(ObjectFromFirebase);
@@ -15,28 +38,9 @@ let postSavedSearchObject = (searchObject) => {
     });
   };
 
-let getSavedObjects = (user) => {
-  let savedObjects = [];
-  return $q((resolve, reject) => {
-    console.log("inside function 'getSavedObjects' in 'SaveSearchFactory'.", `${FBCreds.databaseURL}/savedSearches.json?orderBy="uid"&equalTo"${user}"`);
-    $http.get(`${FBCreds.databaseURL}/items.json?orderBy="uid"&equalTo="${user}"`)
-    .then((returnedObject) => {
-      let searchObjectCollection = returnedObject.data;
-      console.log("searchObjectCollection", searchObjectCollection);
-      Object.keys(searchObjectCollection).forEach((key) => {
-        searchObjectCollection[key].id = key;
-        savedObjects.push(searchObjectCollection[key]);
-      });
-      resolve(savedObjects);
-    })
-    .catch((error) => {
-      reject(error);
-    });
-  });
-};
 
-let delSavedSearchObject = (searchObjectId) => {
-  console.log("inside function 'delSavedSearchObject' in 'SaveSearchFactory'.", searchObjectId);
+let delSearchObject = (searchObjectId) => {
+  console.log("inside function 'delSearchObject' in 'SaveSearchFactory'.", searchObjectId);
   return $q((resolve, reject) => {
     $http.delete(`${FBCreds.databaseURL}/savedObjects/${searchObjectId}.json`)
     .then((ObjectFromFirebase) => {
@@ -45,7 +49,7 @@ let delSavedSearchObject = (searchObjectId) => {
   });
 };
 
-let getSingleObject = (searchObjectId) => {
+let getSearchObject = (searchObjectId) => {
   return $q(function(resolve, reject){
     $http.get(`${FBCreds.databaseURL}/savedObjects/${searchObjectId}.json`)
     .then(function(returnedObject){
@@ -64,7 +68,7 @@ let updateSearchObject = (searchObjectId, editedObject) => {
 
   return $q(function(resolve, reject){
     $http.patch(`${FBCreds.databaseURL}/savedObjects/${searchObjectId}.json`,
-      angular.toJson(editedObject))
+      angular.toJson(editedObject) )
     .then(function(ObjectFromFirebase){
       resolve(ObjectFromFirebase);
     })
@@ -79,6 +83,6 @@ let updateSearchObject = (searchObjectId, editedObject) => {
 
 
 
-return {postSavedSearchObject, getSavedObjects, delSavedSearchObject, getSingleObject, updateSearchObject};
+return {postSearchObject, getSavedObjects, delSearchObject, getSearchObject, updateSearchObject};
 
 });

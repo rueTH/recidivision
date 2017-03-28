@@ -1,23 +1,22 @@
 "use strict";
 console.log("You are in the 'New Search' Controller!");
-app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchFactory, AuthFactory, $routeParams) {
 
-  // this.selectedDropdownItem = null;
-  // this.dropdownItems = ['dropdown 1', 'dropdown 2', 'dropdown 3'];
-//adding new search criteria:
+app.controller("NewSearchCtrl", function($scope, SearchFactory, $location, AuthFactory, $routeParams) {
 
-
-  let searchPairs = [];
+  let user = AuthFactory.getUser();
   
 
+  let savedObjects = [];
+ 
+  $scope.saveButtonLabel = 'Save this search';
 
-  $scope.searchPairs = searchPairs;
-  $scope.searchPair = {};
-  // $scope.searchPair = 
+
+  $scope.savedObjects = savedObjects;
+  $scope.searchObject = {};
+
   $scope.parameter = '';
   $scope.newTerm = '';  
   
-  $scope.saveButtonLabel = 'Save this search';
   
   $('.dropdown-menu a').click(function(){
     $('#parameter').text($(this).text());
@@ -29,50 +28,40 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
     let parameter = $scope.parameter; 
     let newTerm = $scope.newTerm;
     console.log(newTerm);
-    let searchPair = {};
-    searchPair.parameter = parameter;
-    searchPair.newTerm = newTerm;
+    let searchObject = {};
+    searchObject.parameter = parameter;
+    searchObject.newTerm = newTerm;
     console.log("function is firing");
-    searchPairs.push(searchPair);
-    console.log(searchPair);
-    console.log(searchPairs);
+    // savedObjects.push(searchObject);
+    SearchFactory.postSearchObject($scope.newSearch)
+      .then(function(response){
+        $location.url("/savedObjects/savedObjects");
+      });
+    console.log(searchObject);
+    console.log(savedObjects);
 
 
   };
 //delete individual search terms:  
   $scope.del = function(i){
-    $scope.searchPairs.splice(i,1);
+    $scope.savedObjects.splice(i,1);
   };
 //delete&reset entire search form:
   $scope.reset = function() {
-    $scope.searchPairs.splice(0);
+    $scope.savedObjects.splice(0);
   };
 
 //saving your searches:
   $scope.save = function() {
-    //alert ($scope.searchPairs);
+    //alert ($scope.savedObjects);
     let user = AuthFactory.getUser();
     let searchObject = {
-      search: searchPairs,
+      search: savedObjects,
       uid: user
     };
-    SaveSearchFactory.postSavedSearchObject($scope.searchObject);
+    SearchFactory.postSearchObject($scope.searchObject);
   };
-    // $scope.save = function($index) {
-    //   console.log($scope.terms);
-    // };
-  $scope.viewObjectCollection = function() {
-    console.log($routeParams.searchObjectId);
-    let user = AuthFactory.getUser();
 
-    SaveSearchFactory.getSavedObjects(user)
-    .then(function(searchObjectCollection) {
-      $scope.savedObjects = searchObjectCollection;
-      $scope.selectedObject = $scope.savedObjects.filter(function(searchPair){
-        return searchPair.id === $routeParams.searchObjectId;
-      })[0];
-    });
-  };
 
 
 
@@ -80,20 +69,6 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
   });
 
 
-
- /* $scope.terms = [{id: 'term1'}, {id: 'term2'}];
-  
-  $scope.addNewTerm = function() {
-    var newItemNo = $scope.terms.length+1;
-    $scope.terms.push({'id':'term'+newItemNo});
-  };
-    
-  $scope.removeTerm = function() {
-    var lastItem = $scope.terms.length-1;
-    $scope.terms.splice(lastItem);
-  };
-  
-}); */
   
 
 

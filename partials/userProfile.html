@@ -1,19 +1,17 @@
 <h1>Coming Soon....<br>Your Saved Searches</h1>
 <br/>
-<div ng-repeat="searchPair in searchPairs | filter: searchText.search">
+<div ng-controller="SavedObjectsCtrl" ng-repeat="searchObject in savedObjects | filter: searchText.search">
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="col-xs-1"><input type="checkbox" name=""/></div>
-      <div class="col-xs-7"><a ng-href="#!/savedObjects/{{searchPair.id}}">
-      {{searchPair.searchPairs}}</a></div>
+      <div class="col-xs-7"><a ng-href="#!/savedObjects/{{searchObject.id}}">
+      {{searchObject.savedObjects}}</a></div>
       <div class="col-xs-2">One day, I will inject some object properties here.</div>
 <!--       <div class="col-xs-1">...Here too!</div> -->
-      <div class="col-xs-1"><button class="btn btn-danger" ng-click="del(searchPair.id)">X</button></div>
+      <div class="col-xs-1"><button class="btn btn-danger" ng-click="del(searchObject.id)">X</button></div>
     </div>
   </div>
 </div>
-<h3>**Looking back, I really, really enjoyed formating the data for each newSearch,<br>I only wish I had accomplished it earlier in the game.
-</h3>
-<h4>- I didn't account for the problems I would ultimately encounter.</h4>
+
 
 
