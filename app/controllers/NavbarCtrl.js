@@ -6,6 +6,7 @@ console.log("inside NavbarCtrl");
   // $scope.searchText = SearchTermData;
   $scope.isLoggedIn = false;
   // Authenticate user
+  
   // add a listener for login/logout to show/hide nav items
   $scope.logoutUser = function() {
     console.log("you are in logoutUser in NavbarCtrl.js");

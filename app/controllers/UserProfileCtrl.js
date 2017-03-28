@@ -1,8 +1,13 @@
 "use strict";
 console.log("You have entered the User's Profile.....");
-app.controller("UserProfileCtrl", function($scope, $window, $location) {
+app.controller("UserProfileCtrl", function($scope, SearchTermData) {
   
-  let retrieveSavedSearchArrays = () => {
+  let searchPairs = [];
+
+  $scope.searchPairs = searchPairs;
+  $scope.searchPair = {};
+
+  // let retrieveSavedSearchArrays = () => {
     
-  };
+  
 });

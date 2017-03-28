@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("SaveSearchFactory", ($q, $http, FBCreds) => {
+app.factory("SaveSearchFactory", ($q, $http, FBCreds, searchObject, user, searchObjectId, editedObject, ObjectFromFirebase, s) => {
 
 let postSavedSearchObject = (searchObject) => {
     return $q((resolve, reject) => {
