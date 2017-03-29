@@ -1,5 +1,5 @@
 "use strict";
-console.log("You are in your UserCtrl!!!!!!");
+console.log("You are in your UserCtrl");
 // This page will include:
 // login for user
 // logout for user

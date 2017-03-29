@@ -1,14 +1,15 @@
 "use strict";
 console.log("You are in the 'New Search' Controller!");
 
-app.controller("NewSearchCtrl", function($scope, SearchFactory, $location, AuthFactory, $routeParams) {
+app.controller("NewSearchCtrl", function($scope, SearchFactory, AuthFactory, $location, $routeParams) {
 
   let user = AuthFactory.getUser();
   
 
-  let searchPairs = [];
- 
   
+  let searchObject = [];
+  let searchPairs = searchObject;
+  $scope.searchObject = searchObject;
   $scope.searchPairs = searchPairs;
   $scope.searchPair = {};
 
@@ -17,12 +18,10 @@ app.controller("NewSearchCtrl", function($scope, SearchFactory, $location, AuthF
   
   $scope.saveButtonLabel = 'Save this search';
 
-
   $('.dropdown-menu a').click(function(){
     $('#parameter').text($(this).text());
   });
-
-
+  
 //bind pair and add to array
    $scope.add = function() {
     let parameter = $scope.parameter; 
@@ -50,12 +49,16 @@ app.controller("NewSearchCtrl", function($scope, SearchFactory, $location, AuthF
 //saving your searches:
   $scope.save = function() {
     //alert ($scope.searchPairs);
-    let user = AuthFactory.getUser();
-    let searchObject = {
+    // let user = AuthFactory.getUser();
+    SearchFactory.postSearchObject(searchObject)
+    .then(function(response){
+      $location.url("/savedSearches");
+    });
+    let searchObject = ({
       search: searchPairs,
       uid: user
-    };
-    SearchFactory.postSearchObject($scope.searchObject);
+    });
+    SearchFactory.postSearchObject(searchObject);
   };
 
 

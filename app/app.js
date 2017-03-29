@@ -38,28 +38,34 @@ app.config(function ($routeProvider) {
     controller: 'NewSearchCtrl', 
     resolve: {isAuth}
   }).
-  when('/savedObjects/userProfile', {
+  when('/user-profile', {
     templateUrl: "partials/userProfile.html",
     controller: 'SavedObjectsCtrl',
     resolve: {isAuth}
   }).
-  when("/", {
-    templateUrl: "partials/navBar.html",
-    controller: 'NavBarCtrl',
+   when('/user-profile', {
+    templateUrl: "partials/userProfile.html",
+    controller: 'SearchObjectEditCtrl',
     resolve: {isAuth}
   }).
-  when('/savedObjects/:searchObjectId', {
-    templateUrl: "partials/searchObjectDetails",
+   when('/user-profile', {
+    templateUrl: "partials/userProfile.html",
     controller: 'ObjectViewCtrl',
     resolve: {isAuth}
   }).
+
+  // when('/savedObjects/:searchObjectId', {
+  //   templateUrl: "partials/searchObjectDetails",
+  //   controller: 'ObjectViewCtrl',
+  //   resolve: {isAuth}
+  // }).
   when('/savedObjects/:searchObjectId/edit', {
     templateUrl: 'partials/searchForm.html',
     controller: 'SearchObjectEditCtrl',
     resolve: {isAuth}
   }).
 
-  when("new-search", {
+  when("/data-map", {
     templateUrl: "partials/svgMaps.html",
     controller: "SVGmapsCtrl"
   }).

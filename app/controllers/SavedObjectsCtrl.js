@@ -1,5 +1,7 @@
 "use strict";
 
+console.log("You are in the 'Saved Object' Controller!");
+
 app.controller("SavedObjectsCtrl", function($scope, SearchFactory, SearchTermData, AuthFactory){
   
   $scope.searchText = SearchTermData;

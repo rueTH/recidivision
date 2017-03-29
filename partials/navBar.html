@@ -1,9 +1,7 @@
-<div ng-controller="NavbarCtrl"></div>
 
 
-
- 
-<div style="background-color: black" class="row">
+ <div class="container-fluid generalTheme">
+<div ng-controller="NavbarCtrl" style="background-color: black" class="row">
         <div class="col-md-12">
           <div class="col-md-6 whiteOnBlack">
             <h3>recidiVision</h3>
@@ -23,9 +21,9 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li><a ng-href="#!/new-search">Create New Search</a></li>
-                  <li><a ng-href="#!/userProfile">Your Saved Searches</a></li>
+                  <li><a ng-href="#!/user-profile">Your Saved Searches</a></li>
                   <li><hr></li>
-                  <li><a ng-click="logoutUser()">Logout</a></li>                       
+                  <li><a ng-href="#!/visitor-home" ng-click="logoutUser()">Logout</a></li>                       
                 </ul>
               </div>
             

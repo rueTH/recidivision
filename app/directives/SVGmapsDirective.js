@@ -3,7 +3,7 @@
 app.directive('svgMap', ['$compile', function ($compile) {
     return {
         restrict: 'A',
-        templateUrl: 'img/Blank_US_Map.svg',
+        templateUrl: 'images/svgMap.svg',
         link: function (scope, element, attrs) {
             var regions = element[0].querySelectorAll('.state');
             angular.forEach(regions, function (path, key) {

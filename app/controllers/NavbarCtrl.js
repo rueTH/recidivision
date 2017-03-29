@@ -1,9 +1,9 @@
 "use strict";
-
+console.log("You are in the 'NavBar' Controller!");
 // Ctrl for navigation links
-app.controller("NavbarCtrl", function ($scope, $window, SearchTermData) {
+app.controller("NavbarCtrl", function ($scope, $window, SearchFactory) {
 console.log("inside NavbarCtrl");
-  $scope.searchText = SearchTermData;
+  // $scope.searchText = SearchTermData;
   $scope.isLoggedIn = false;
   // Authenticate user
   
@@ -19,12 +19,12 @@ console.log("inside NavbarCtrl");
     if (user) {
       $scope.isLoggedIn = true;
       console.log("currentUser logged in", $scope.isLoggedIn);
-
+      $window.location.href="#!/userProfile";
     } else {
       $scope.isLoggedIn = false;
       console.log("currentUser logged in", $scope.isLoggedIn);
       // $window.location forces the page to completely reload
-      $window.location.href = "#!/login";
+      $window.location.href="#!/login";
     }
   });
 }); 

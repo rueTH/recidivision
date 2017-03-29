@@ -1,6 +1,10 @@
 <h1>Coming Soon....<br>Your Saved Searches</h1>
 <br/>
-<div ng-controller="SavedObjectsCtrl" ng-repeat="searchObject in savedObjects | filter: searchText.search">
+<!-- <div ng-controller="ObjectViewCtrl"></div> -->
+<!-- <div ng-controller="NewSearchCtrl"></div> -->
+<!-- <div ng-controller="SearchObjectEditCtrl"></div> -->
+<div ng-controller="SavedObjectsCtrl"></div> 
+<div ng-repeat="searchObject in savedObjects | filter: searchText.search">
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="col-xs-1"><input type="checkbox" name=""/></div>

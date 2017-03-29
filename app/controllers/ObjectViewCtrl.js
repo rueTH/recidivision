@@ -1,4 +1,5 @@
 "use strict";
+console.log("You are in the 'Object View' Controller!");
 
 app.controller("ObjectViewCtrl", function($scope, $routeParams, SearchFactory, AuthFactory, searchObjectId) {
   $scope.items = [];

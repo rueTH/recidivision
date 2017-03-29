@@ -1,4 +1,7 @@
 "use strict";
+
+console.log("You are in the SVG Controller!");
+
 app.controller('SVGmapsCtrl', ['$scope', function($scope){
     var states = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL",
         "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM",
