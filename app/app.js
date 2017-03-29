@@ -4,7 +4,7 @@ var app = angular.module("recidiVision", ["ngRoute"]);
 
   //used to authenticate user when navigating to other views
   let isAuth = (AuthFactory) => new Promise ( (resolve, reject) => {
-    console.log("running isAuth");
+    // console.log("running isAuth");
     AuthFactory.isAuthenticated()
     .then ( (userExists) => {
       console.log("userExists", userExists);
@@ -13,10 +13,11 @@ var app = angular.module("recidiVision", ["ngRoute"]);
         resolve();
       } 
 
-      // else {
-      //   console.log("we're sorry; authentication failed");
-      //   reject();
-      // }
+      else {
+        alert("We're sorry; authentification failed. Please Login to continue by clicking 'get started.'");
+        console.log("we're sorry; authentication failed");
+        reject();
+      }
 
     });
 
@@ -41,14 +42,47 @@ app.config( function ($routeProvider) {
     controller: "NewSearchCtrl", 
     resolve: {isAuth}
   }).
+
+
+
+  // when('/user-profile', {
+  //   templateUrl: "partials/userProfile.html",
+  //   controller: 'SavedObjectsCtrl',
+  //   resolve: {isAuth}
+  // }).
+  //  when('/user-profile', {
+  //   templateUrl: "partials/userProfile.html",
+  //   controller: 'SearchObjectEditCtrl',
+  //   resolve: {isAuth}
+  // }).
+  //  when('/user-profile', {
+  //   templateUrl: "partials/userProfile.html",
+  //   controller: 'ObjectViewCtrl',
+  //   resolve: {isAuth}
+  // }).
+
+  // // when('/savedObjects/:searchObjectId', {
+  // //   templateUrl: "partials/searchObjectDetails",
+  // //   controller: 'ObjectViewCtrl',
+  // //   resolve: {isAuth}
+  // // }).
+  // when('/savedObjects/:searchObjectId/edit', {
+  //   templateUrl: 'partials/searchForm.html',
+  //   controller: 'SearchObjectEditCtrl',
+  //   resolve: {isAuth}
+  // }).
+
+
+
+
   when("/user-profile", {
     templateUrl: "partials/userProfile.html",
     controller: "UserProfileCtrl"
   }).
-  // when("/al-county-svg-map", {
-    // templateUrl: "partials/svgMaps.html",
-    // controller: "SVGmapsCtrl"
-  // }).
+  when("/data-map", {
+    templateUrl: "partials/svgMaps.html",
+    controller: "SVGmapsCtrl"
+  }).
 
   otherwise("/");  
 });

@@ -48,7 +48,7 @@ app.controller("NewSearchCtrl", function($scope, $window, $location, SaveSearchF
 
 //saving your searches:
   $scope.save = function() {
-    alert ($scope.searchPairs);
+    // alert ($scope.searchPairs);
     let user = AuthFactory.getUser();
     let searchObject = {
       search: searchPairs,
